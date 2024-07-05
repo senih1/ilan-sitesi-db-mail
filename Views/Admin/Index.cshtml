@@ -1,0 +1,63 @@
+﻿@model List<Ad>
+@{
+    ViewData["Title"] = "İlan Ekle";
+}
+
+<hr />
+<h3>İlan Ekle</h3>
+@ViewBag.Message
+<form method="post" action="Admin/Add" enctype="multipart/form-data">
+    <div class="mb-3" style="width: 400px;">
+        <br />
+        <input type="text" class="form-control" name="sellerName" placeholder="İsim Soyisim" required>
+        <br />
+        <input type="text" class="form-control" name="name" placeholder="Ürün İsmi" required>
+        <br />
+        <textarea class="form-control" name="detail" rows="3" placeholder="Detay" required></textarea>
+        <br />
+        <input type="number" class="form-control" name="price" placeholder="Fiyat" required>
+        <br />
+        <input type="file" class="form-control" name="image" placeholder="Resim" required accept="image/png,image/jpeg">
+        <br />
+        <input type="email" class="form-control" name="email" placeholder="E-Posta Adresi" required>
+        <br />
+        <button class="btn btn-primary">Ekle</button>
+    </div>
+</form>
+<hr />
+<br />
+<h3>İlanlar</h3>
+<table class="table" style="width: 1300px;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Başlık</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Satıcı İsmi</th>
+            <th scope="col">Eklenme Tarihi</th>
+            <th scope="col">Düzenleme Tarihi</th>
+            <th scope="col">Düzenle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var count = 1;
+        }
+        @foreach (var ad in Model)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                <td>@ad.Name</td>
+                <td>@ad.Price.ToString("N") TL</td>
+                <td>@ad.sellerName</td>
+                <td>@ad.CreateDate.ToString("dd MMMM yyyy HH:mm")</td>
+                <td>@ad.UpdateDate.ToString("dd MMMM yyyy HH:mm")</td>
+                <td>
+                    <a href="/admin/edit/@ad.Id" class="btn btn-primary">Düzenle</a>
+                    <a href="/admin/delete/@ad.Id" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+            count++;
+        }
+    </tbody>
+</table>

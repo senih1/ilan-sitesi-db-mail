@@ -1,0 +1,28 @@
+﻿@model List<Ad>
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+@ViewBag.Message
+<h3>Son İlanlar</h3>
+<hr />
+@foreach (var ad in Model)
+{
+    <div class="container mt-4">
+        <div class="border border-dark rounded p-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <img src="@ad.ImageUrl" class="rounded" style="max-width: 100%; height: auto; width:400px; height: 250px;" alt="@ad.Name">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h2>@ad.Name</h2>
+                    <p><strong>Detaylar :</strong> @ad.Detail</p>
+                    <p><strong>Fiyat :</strong> @ad.Price TL</p>
+                    <p><strong>Satıcı İsmi :</strong> @ad.sellerName</p>
+                    <p><strong>İlan Ekleme Tarihi :</strong> @ad.CreateDate.ToString("dd MMMM yyyy")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

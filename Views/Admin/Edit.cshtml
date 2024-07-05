@@ -1,0 +1,26 @@
+﻿@model Ad
+@{
+    ViewData["Title"] = "Yazı Düzenle";
+}
+
+<h2 class="mb-4">Yazı Düzenle</h2>
+
+<form class="row g-3" method="post">
+    <div class="mb-3">
+        <label class="form-label">İlan İsmi</label>
+        <input required type="text" value="@Model.Name" class="form-control" name="Name">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">İlan Detayı</label>
+        <input required type="text" value="@Model.Detail" class="form-control" name="detail">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">İlan Fiyatı</label>
+        <input required type="number" name="price">@Model.Price</input>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">İlan Resim URLsi</label>
+        <textarea required class="form-control" name="imageurl">@Model.ImageUrl</textarea>
+    </div>  
+    <button class="btn btn-success">Ekle</button>
+</form>
